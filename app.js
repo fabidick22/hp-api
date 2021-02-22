@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const router = express.Router();
+const routerBase = express.Router();
 
 const port = process.env.PORT || 8080;
 
@@ -24,10 +25,17 @@ let respuesta = {
     data: undefined
 }
 
+// base endponit
+routerBase.get('/', function (req, res) {
+    res.send({HOST: process.env.HOSTNAME || "undefined", apiTest: "/api/v1"})
+})
+routerBase.get('/status', function (req, res) {
+    res.send({status: "up"})
+})
 
 // USERS ENDPOINT
 router.get('/', function (req, res) {
-    res.send({message: 'My HP API (Users)'})
+    res.send({message: `My HP API (Users)`})
 });
 
 router.get('/users', function (req, res) {
@@ -54,10 +62,10 @@ router.delete('/users', function (req, res) {
 
 //ROUTERS
 app.use('/api/v1', router);
-
+app.use('', routerBase);
 
 //start server
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
-    console.log(`Server listening on port ${server.address().port}`);
+    console.log(`Server listening on port: ${server.address().port}`);
 })
