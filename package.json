@@ -1,0 +1,27 @@
+{
+  "name": "hp-api",
+  "version": "1.0.0",
+  "description": "High Performance API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabidick22/hp-api.git"
+  },
+  "keywords": [
+    "hp"
+  ],
+  "author": "fabidick22",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabidick22/hp-api/issues"
+  },
+  "homepage": "https://github.com/fabidick22/hp-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
