@@ -14,5 +14,7 @@ COPY . .
 EXPOSE 8080
 
 ADD .docker/service/start_service.sh /usr/local/bin/start_service.sh
+
 RUN chmod u+x /usr/local/bin/start_service.sh
+
 ENTRYPOINT ["/bin/sh", "/usr/local/bin/start_service.sh"]
