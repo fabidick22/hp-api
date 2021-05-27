@@ -9,9 +9,9 @@ services:
     networks:
       - envoymesh
     ports:
-      - "8080:8080"
-      - "8443:8443"
-      - "8001:8001"
+      - "8080:8080" # http
+      - "8443:8443" # https
+      - "8001:8001" # admin
 
   hp-api:
     build:
