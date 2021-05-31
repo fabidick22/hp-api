@@ -22,6 +22,15 @@ services:
       - envoymesh
     environment:
       - SERVICE_NAME=1
+      - REDIS_HOST=service1-redis
+      - PORT=8080
+
+  service1-redis:
+    image: "redis:alpine"
+    networks:
+      - envoymesh
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
 
 networks:
   envoymesh: {}
