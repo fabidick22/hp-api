@@ -1,7 +1,6 @@
 version: "3.7"
 
 services:
-
   front-envoy:
     build:
       context: .
@@ -13,7 +12,7 @@ services:
       - "8443:8443"
       - "8001:8001"
 
-  hp-api:
+  service1:
     build:
       context: .
       dockerfile: .docker/service/Dockerfile
