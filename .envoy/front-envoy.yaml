@@ -19,7 +19,7 @@ static_resources:
               - "*"
               routes:
               - match:
-                  prefix: "/service/hp-api"
+                  prefix: "/api"
                 route:
                   cluster: service1
           http_filters:
