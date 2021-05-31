@@ -1,7 +1,6 @@
 version: "3.7"
 
 services:
-
   front-envoy:
     build:
       context: .
@@ -9,11 +8,22 @@ services:
     networks:
       - envoymesh
     ports:
-      - "8080:8080" # http
-      - "8443:8443" # https
-      - "8001:8001" # admin
+      - "8080:8080"
+      - "8443:8443"
+      - "8001:8001"
 
-  hp-api:
+#  service1:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-service
+#    volumes:
+#      - ./service-envoy.yaml:/etc/service-envoy.yaml
+#    networks:
+#      - envoymesh
+#    environment:
+#      - SERVICE_NAME=1
+
+  service2:
     build:
       context: .
       dockerfile: .docker/service/Dockerfile
@@ -22,7 +32,7 @@ services:
     networks:
       - envoymesh
     environment:
-      - SERVICE_NAME=1
+      - SERVICE_NAME=2
 
 networks:
   envoymesh: {}

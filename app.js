@@ -6,6 +6,7 @@ const router = express.Router();
 const routerBase = express.Router();
 
 const port = process.env.PORT || 8080;
+const service = process.env.SERVICE_NAME || "undefined";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -26,15 +27,18 @@ let respuesta = {
 }
 
 // base endponit
-routerBase.get('/', function (req, res) {
-    res.send({HOST: process.env.HOSTNAME || "undefined", apiTest: "/api/v1"})
+routerBase.get('/service/hp-api', function (req, res) {
+    res.send({host: process.env.HOSTNAME || "undefined", date: Date.now(), from: "service"+service, apiTest: "/api/v1"})
 })
-routerBase.get('/status', function (req, res) {
+routerBase.get('/service/:id/lpm', function (req, res) {
     res.send({status: "up"})
 })
 
 // USERS ENDPOINT
 router.get('/', function (req, res) {
+    res.send({message: `My HP API (Users)`})
+});
+router.get('/1', function (req, res) {
     res.send({message: `My HP API (Users)`})
 });
 
@@ -65,7 +69,7 @@ app.use('/api/v1', router);
 app.use('', routerBase);
 
 //start server
-const server = app.listen(port, (error) => {
+const server = app.listen(port, "127.0.0.1",(error) => {
     if (error) return console.log(`Error: ${error}`);
     console.log(`Server listening on port: ${server.address().port}`);
 })
