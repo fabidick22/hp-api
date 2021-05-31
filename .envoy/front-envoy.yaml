@@ -19,13 +19,9 @@ static_resources:
               - "*"
               routes:
               - match:
-                  prefix: "/service/1"
-                route:
-                  cluster: service1
-              - match:
                   prefix: "/service/hp-api"
                 route:
-                  cluster: service2
+                  cluster: service1
           http_filters:
           - name: envoy.filters.http.router
             typed_config: {}
@@ -49,13 +45,9 @@ static_resources:
               - "*"
               routes:
               - match:
-                  prefix: "/service/1"
-                route:
-                  cluster: service1
-              - match:
                   prefix: "/service/hp-api"
                 route:
-                  cluster: service2
+                  cluster: service1
           http_filters:
           - name: envoy.filters.http.router
             typed_config: {}
@@ -138,19 +130,7 @@ static_resources:
               socket_address:
                 address: service1
                 port_value: 8000
-  - name: service2
-    connect_timeout: 0.25s
-    type: STRICT_DNS
-    lb_policy: ROUND_ROBIN
-    load_assignment:
-      cluster_name: service2
-      endpoints:
-      - lb_endpoints:
-        - endpoint:
-            address:
-              socket_address:
-                address: service2
-                port_value: 8000
+
 admin:
   access_log_path: "/dev/null"
   address:
