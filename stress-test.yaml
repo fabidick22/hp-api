@@ -1,0 +1,40 @@
+---
+settings:
+  env:
+    API_URL: 'http://localhost:8080'
+
+execution:
+- scenario: get-trace-ip
+  concurrency: 20
+  throughput: 20
+  ramp-up: 5m
+  hold-for: 1h
+- scenario: get-stats
+  concurrency: 1
+  throughput: 1
+  ramp-up: 1ms
+  hold-for: 1h
+
+scenarios:
+  get-trace-ip:
+    timeout: 5s
+    retrieve-resources: false
+    store-cache: false
+    store-cookie: false
+    default-address: ${BASE_DIR}
+    headers:
+      Content-Type: application/json
+    requests:
+    - url: '/api/traceIP/2.23.34.5'
+      method: GET
+  get-stats:
+    timeout: 5s
+    retrieve-resources: false
+    store-cache: false
+    store-cookie: false
+    default-address: ${BASE_DIR}
+    headers:
+      Content-Type: application/json
+    requests:
+    - url: '/api/stats'
+      method: GET
