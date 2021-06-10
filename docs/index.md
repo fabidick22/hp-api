@@ -18,3 +18,13 @@ Scale service
 ```shell
 docker-compose scale service1=4
 ```
+
+## REST API
+After starting docker-compose the service should be exposed on `http://localhost:8080`. These are the available endpoints:
+```http request
+GET http://localhost:8080/api/traceIP/:ip
+Accept: application/json
+
+GET http://localhost:8080/api/stats
+Accept: application/json
+```

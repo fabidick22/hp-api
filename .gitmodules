@@ -1,0 +1,3 @@
+[submodule "src/challenge-infra"]
+	path = src/challenge-infra
+	url = git@github.com:Seraffina-93/challenge-infra.git
