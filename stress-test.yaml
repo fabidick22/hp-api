@@ -5,11 +5,15 @@ settings:
 
 execution:
 - scenario: get-trace-ip
+  executor: selenium
+  runner: apiritif
   concurrency: 20
   throughput: 20
   ramp-up: 5m
   hold-for: 1h
 - scenario: get-stats
+  executor: selenium
+  runner: apiritif
   concurrency: 1
   throughput: 1
   ramp-up: 1ms
@@ -21,7 +25,7 @@ scenarios:
     retrieve-resources: false
     store-cache: false
     store-cookie: false
-    default-address: ${BASE_DIR}
+    default-address: ${API_URL}
     headers:
       Content-Type: application/json
     requests:
@@ -32,7 +36,7 @@ scenarios:
     retrieve-resources: false
     store-cache: false
     store-cookie: false
-    default-address: ${BASE_DIR}
+    default-address: ${API_URL}
     headers:
       Content-Type: application/json
     requests:
