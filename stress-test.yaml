@@ -2,6 +2,7 @@
 settings:
   env:
     API_URL: 'http://localhost:8080'
+    BZT_TOKEN: ''
 
 execution:
 - scenario: get-trace-ip
@@ -11,13 +12,13 @@ execution:
   throughput: 20
   ramp-up: 5m
   hold-for: 1h
-- scenario: get-stats
-  executor: selenium
-  runner: apiritif
-  concurrency: 1
-  throughput: 1
-  ramp-up: 1ms
-  hold-for: 1h
+#- scenario: get-stats
+#  executor: selenium
+#  runner: apiritif
+#  concurrency: 1
+#  throughput: 1
+# ramp-up: 1ms
+#  hold-for: 1h
 
 scenarios:
   get-trace-ip:
@@ -42,3 +43,14 @@ scenarios:
     requests:
     - url: '/api/stats'
       method: GET
+
+reporting:
+  - module: final-stats
+  - module: console
+  - module: blazemeter
+
+modules:
+  blazemeter:
+    project: hp
+    report-name: High Performance API
+    token: ${BZT_TOKEN}
