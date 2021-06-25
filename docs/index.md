@@ -3,8 +3,8 @@
 - Envoy Proxy
 - Node.js / Express
 - Docker / Docker Compose
+- Taurus (gatling)
 - jq
-
 ## Architecture Diagram
 ![architecture](./img/hp-architecture.jpg)
 
@@ -15,7 +15,7 @@ docker-compose up --build -d
 ./scripts/rep.sh 
 ```
 Scale service
-```shell
+```commandline
 docker-compose scale service1=4
 ```
 
@@ -28,3 +28,8 @@ Accept: application/json
 GET http://localhost:8080/api/stats
 Accept: application/json
 ```
+
+## Stress Test
+Para este proyecto vamos usar Tautus para realizar pruebas de rendimiento se establece dos escenarios de pruebas:
+
+[Resultados de pruebas de estrés](./another-page.html).
