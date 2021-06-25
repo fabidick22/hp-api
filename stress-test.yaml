@@ -1,0 +1,54 @@
+---
+settings:
+  env:
+    API_URL: 'http://localhost:8080'
+
+execution:
+- scenario: get-trace-ip
+  executor: gatling
+  concurrency: 1000
+  throughput: 10000
+  ramp-up: 3m
+  hold-for: 3m
+- scenario: get-stats
+  executor: selenium
+  runner: apiritif
+  concurrency: 1
+  throughput: 1
+  ramp-up: 1ms
+  hold-for: 1h
+
+scenarios:
+  get-trace-ip:
+    timeout: 5s
+    retrieve-resources: false
+    store-cache: false
+    store-cookie: false
+    default-address: ${API_URL}
+    headers:
+      Content-Type: application/json
+    requests:
+    - url: '/api/traceIP/157.100.76.111'
+      method: GET
+  get-stats:
+    timeout: 5s
+    retrieve-resources: false
+    store-cache: false
+    store-cookie: false
+    default-address: ${API_URL}
+    headers:
+      Content-Type: application/json
+    requests:
+    - url: '/api/stats'
+      method: GET
+
+reporting:
+  - module: final-stats
+  - module: console
+  - module: blazemeter
+
+modules:
+  blazemeter:
+    project: hp
+    report-name: High Performance API
+    token: ${BZT_TOKEN}
