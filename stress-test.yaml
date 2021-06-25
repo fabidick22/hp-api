@@ -2,23 +2,21 @@
 settings:
   env:
     API_URL: 'http://localhost:8080'
-    BZT_TOKEN: ''
 
 execution:
 - scenario: get-trace-ip
+  executor: gatling
+  concurrency: 1000
+  throughput: 10000
+  ramp-up: 3m
+  hold-for: 3m
+- scenario: get-stats
   executor: selenium
   runner: apiritif
-  concurrency: 20
-  throughput: 20
-  ramp-up: 5m
+  concurrency: 1
+  throughput: 1
+  ramp-up: 1ms
   hold-for: 1h
-#- scenario: get-stats
-#  executor: selenium
-#  runner: apiritif
-#  concurrency: 1
-#  throughput: 1
-# ramp-up: 1ms
-#  hold-for: 1h
 
 scenarios:
   get-trace-ip:
@@ -30,7 +28,7 @@ scenarios:
     headers:
       Content-Type: application/json
     requests:
-    - url: '/api/traceIP/2.23.34.5'
+    - url: '/api/traceIP/157.100.76.111'
       method: GET
   get-stats:
     timeout: 5s
