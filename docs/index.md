@@ -21,6 +21,7 @@ docker-compose scale service1=4
 
 ## REST API
 After starting docker-compose the service should be exposed on `http://localhost:8080`. These are the available endpoints:
+
 ```http request
 GET http://localhost:8080/api/traceIP/:ip
 Accept: application/json
@@ -32,4 +33,4 @@ Accept: application/json
 ## Stress Test
 Para este proyecto vamos usar Tautus para realizar pruebas de rendimiento se establece dos escenarios de pruebas:
 
-[Resultados de pruebas de estrés](./another-page.html).
+[Resultados de pruebas de estrés](./stress-test.html).
